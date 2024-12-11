@@ -365,7 +365,7 @@ namespace YARG.Audio.BASS
 #endif
 
 #if UNITY_ANDROID
-            pluginDirectory = Path.Combine(pluginDirectory, "Android/arm64-v8a");
+            pluginDirectory = Path.Combine(pluginDirectory, "Android/armeabi-v7a");
 #endif
 
             return pluginDirectory;

@@ -21,6 +21,13 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.gwiazdorrr.betterstreamingassets": {
+      "version": "https://github.com/gwiazdorrr/BetterStreamingAssets.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "2bdc568484f7b98f9297a444ab12ad016b73f283"
+    },
     "com.marijnzwemmer.unity-toolbar-extender": {
       "version": "1.4.2",
       "depth": 0,
@@ -286,23 +293,6 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
-    },
-    "jp.keijiro.minis": {
-      "version": "https://github.com/TheNathannator/Minis.git?path=/Packages/jp.keijiro.minis#yarg",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "jp.keijiro.rtmidi": "1.0.4",
-        "com.unity.inputsystem": "1.0.1"
-      },
-      "hash": "29dee9f786d99cfae145d1972a39fb79117c1b8f"
-    },
-    "jp.keijiro.rtmidi": {
-      "version": "1.0.4",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://registry.npmjs.com"
     },
     "unity-dependencies-hunter": {
       "version": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm",

@@ -87,13 +87,15 @@ namespace YARG.Song
 #nullable disable
                 foreach (var root in SourceRoots)
                 {
-                    var info = new FileInfo(Path.Combine(root, $"{_icon}.png"));
-                    if (info.Exists)
+                    var file = Path.Combine(root, $"{_icon}.png");
+                    if (BetterStreamingAssets.FileExists(file))
                     {
-                        using var image = await UniTask.RunOnThreadPool(() => YARGImage.Load(info));
+                        // TODO
+                        //using var image = await UniTask.RunOnThreadPool(() => YARGImage.Load(BetterStreamingAssets.ReadAllBytes(file)));
+                        YARGImage image = null;
                         if (image == null)
                         {
-                            YargLogger.LogFormatWarning("Failed to load source icon `{0}`!", info.FullName);
+                            YargLogger.LogFormatWarning("Failed to load source icon `{0}`!", file);
                             return;
                         }
                         texture = image.LoadTexture(true);
@@ -118,9 +120,9 @@ namespace YARG.Song
 #if UNITY_EDITOR
         // The editor does not track the contents of folders that end in ~,
         // so use this to prevent Unity from stalling due to importing freshly-downloaded sources
-        public static readonly string SourcesFolder = Path.Combine(PathHelper.StreamingAssetsPath, "sources~");
+        public static readonly string SourcesFolder = "sources~";
 #else
-        public static readonly string SourcesFolder = Path.Combine(PathHelper.StreamingAssetsPath, "sources");
+        public static readonly string SourcesFolder = "sources";
 #endif
 
         private static readonly string[] SourceTypes =
@@ -148,10 +150,12 @@ namespace YARG.Song
 
         public static async UniTask LoadSources(LoadingContext context)
         {
+#if !UNITY_ANDROID
             if (!GlobalVariables.OfflineMode)
             {
                 await DownloadSources(context);
             }
+#endif
 
             context.SetSubText("Reading song sources...");
             ReadSources();
@@ -287,7 +291,7 @@ namespace YARG.Song
                 try
                 {
                     var indexPath = Path.Combine(SourcesFolder, SOURCE_REPO_FOLDER, index, "index.json");
-                    var sources = JsonConvert.DeserializeObject<SourceIndex>(File.ReadAllText(indexPath));
+                    var sources = JsonConvert.DeserializeObject<SourceIndex>(BetterStreamingAssets.ReadAllText(indexPath));
 
                     foreach (var source in sources.sources)
                     {

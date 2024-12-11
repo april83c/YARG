@@ -71,8 +71,7 @@ namespace YARG.Menu.Credits
             DownloadCredits();
 #endif
 
-            var creditsFilePath = Path.Combine(PathHelper.StreamingAssetsPath, "Credits.json");
-            var json = File.ReadAllText(creditsFilePath);
+            var json = BetterStreamingAssets.ReadAllText("Credits.json");
             var contributors = JsonConvert.DeserializeObject<Contributor[]>(json);
 
             CreateHeader("GameStartedBy");

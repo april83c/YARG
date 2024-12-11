@@ -161,7 +161,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.YARC.YARG
-    Standalone: in.yarg.game
+    Standalone: com.YARC.YARG
   buildNumber:
     Standalone: 0
     iPhone: 0

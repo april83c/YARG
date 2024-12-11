@@ -27,6 +27,8 @@ namespace YARG
         {
             using var context = new LoadingContext();
 
+            BetterStreamingAssets.Initialize();
+
             // Load language
             try
             {

@@ -21,6 +21,7 @@ namespace YARG.Menu.Main
             _cameraContainer.transform.position = Vector3.Lerp(_cameraContainer.transform.position,
                 new Vector3(0, 0.5f, 0), Time.deltaTime * 1.5f);
 
+#if !UNITY_ANDROID
             // Get the mouse position
             var mousePos = Mouse.current.position.ReadValue();
             mousePos = _camera.ScreenToViewportPoint(mousePos);
@@ -28,6 +29,9 @@ namespace YARG.Menu.Main
             // Clamp
             mousePos.x = Mathf.Clamp(mousePos.x, 0f, 1f);
             mousePos.y = Mathf.Clamp(mousePos.y, 0f, 1f);
+#else
+            Vector2 mousePos = new Vector2(0.5f, 0.5f);
+#endif
 
             // Move camera with the cursor
             var transformCache = _camera.transform;

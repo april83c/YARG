@@ -1,4 +1,6 @@
+#if !UNITY_ANDROID
 using Minis;
+#endif
 using UnityEngine;
 using YARG.Input;
 using YARG.Player;
@@ -41,6 +43,7 @@ namespace YARG.Menu.ProfileInfo
 
             foreach (var control in _binding.Bindings)
             {
+#if !UNITY_ANDROID
                 if (control.Control is MidiNoteControl)
                 {
                     _header.AddBinding<SingleMidiNoteBindView, float, ButtonBinding, SingleButtonBinding>(
@@ -48,9 +51,12 @@ namespace YARG.Menu.ProfileInfo
                 }
                 else
                 {
+#endif
                     _header.AddBinding<SingleButtonBindView, float, ButtonBinding, SingleButtonBinding>(
                         _viewPrefab, _binding, control);
+#if !UNITY_ANDROID
                 }
+#endif
             }
 
             _header.RebuildBindingsLayout();

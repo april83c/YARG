@@ -92,14 +92,14 @@ namespace YARG.Localization
         private static void ParseAndLoadLanguage(string cultureCode)
         {
             // Get the path of the localization file
-            var file = Path.Combine(PathHelper.StreamingAssetsPath, "lang", $"{cultureCode}.json");
-            if (!File.Exists(file))
+            var file = Path.Combine("lang", $"{cultureCode}.json");
+            if (!BetterStreamingAssets.FileExists(file))
             {
                 throw new Exception($"The language file for the specified culture ({cultureCode}) does not exist!");
             }
 
             // Read, parse, and scan for localization keys
-            var json = File.ReadAllText(file);
+            var json = BetterStreamingAssets.ReadAllText(file);
             var obj = JObject.Parse(json);
             ParseObjectRecursive(null, obj);
         }
